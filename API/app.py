@@ -18,7 +18,7 @@ import firebase_admin
 from firebase_admin import auth, firestore, credentials
 
 # Initialize Firebase before creating the Flask app
-cred = credentials.Certificate('learn-smart-5bc4b-firebase-adminsdk-fbsvc-adcaaae4ef.json')
+cred = credentials.Certificate('your-file.json')
 firebase_admin.initialize_app(cred)
 
 # Initialize Firestore
@@ -114,7 +114,7 @@ class StudentAnswerEvaluator:
         """
         Track when a student changes difficulty levels to determine if they're dropping back
         to a previous level after going up.
-        """
+        ""
         difficulty_ranks = {'Easy': 0, 'Medium': 1, 'Hard': 2}
 
         # Store the previous level before updating
@@ -880,12 +880,12 @@ class RLLevelManager:
 
 # Initialize evaluator with safe fallback
 try:
-    evaluator = StudentAnswerEvaluator('./enhance_triplet', 'Final_Sorted_Topic_(2).xlsx')
+    evaluator = StudentAnswerEvaluator('./enhance_triplet', 'Dataset.xlsx')
 except Exception as e:
     print(f"Failed to initialize evaluator: {str(e)}")
     evaluator = None
     
-genai.configure(api_key='AIzaSyANM6lJio6lK0cHprH_y_eov-ceyzBWKhk')
+genai.configure(api_key='Your-Key')
 gemini_model = genai.GenerativeModel('gemini-2.0-flash')    
     
 def role_required(required_role):
@@ -950,7 +950,7 @@ def start_quiz():
     global evaluator
     if not evaluator:
         try:
-            evaluator = StudentAnswerEvaluator('./enhance_triplet', 'Final_Sorted_Topic_Wise.xlsx')
+            evaluator = StudentAnswerEvaluator('./enhance_triplet', 'Dataset.xlsx')
         except Exception as e:
             return jsonify({'error': f'Failed to initialize evaluator: {str(e)}'}), 500
     
@@ -1261,7 +1261,7 @@ def delete_question(question_id):
         # Drop the row and reset index
         evaluator.df = evaluator.df.drop(index=idx).reset_index(drop=True)
         # Save to Excel
-        evaluator.df.to_excel('Final_Sorted_Topic_Wise.xlsx', index=False)  # NEW LINE
+        evaluator.df.to_excel('Dataset.xlsx', index=False)  # NEW LINE
         return jsonify({'message': 'Question deleted successfully'})
         
     except ValueError:
@@ -1287,7 +1287,7 @@ def update_question(question_id):
         evaluator.df.at[idx, 'Incorrect Answer 2'] = data.get('incorrectAnswers')[1]
         
         # Save to Excel  # NEW SECTION
-        evaluator.df.to_excel('Final_Sorted_Topic_Wise.xlsx', index=False)
+        evaluator.df.to_excel('Dataset.xlsx', index=False)
         
         updated_question = evaluator.df.iloc[idx].to_dict()
         updated_question['id'] = str(idx)
@@ -1315,7 +1315,7 @@ def create_question():
         new_df = pd.DataFrame([new_question])
         evaluator.df = pd.concat([evaluator.df, new_df], ignore_index=True)
         # Save to Excel  # NEW LINE
-        evaluator.df.to_excel('Final_Sorted_Topic_Wise.xlsx', index=False)
+        evaluator.df.to_excel('Dataset.xlsx', index=False)
         
         return jsonify({
             'id': str(len(evaluator.df)-1),
