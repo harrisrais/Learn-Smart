@@ -1,4 +1,4 @@
-# Adaptive Learning App
+# LearnSmart: Enhancing STEM Education with AI-Supported Self-Regulation
 
 ## Overview
 
