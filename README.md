@@ -22,7 +22,7 @@ A full-stack web application that utilizes Reinforcement Learning to enhance stu
 
 1.  Clone the repository:
     ```bash
-    git clone https://github.com/your-username/adaptive-learning-app.git
+    git clone https://github.com/harrisrais/Learn-Smart.git
     ```
 2.  Install dependencies: through `requirements.txt` file
 3.  Start the application:
