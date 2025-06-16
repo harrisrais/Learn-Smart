@@ -1,4 +1,4 @@
-##Adaptive Learning App
+#Adaptive Learning App
 
 Overview
 
