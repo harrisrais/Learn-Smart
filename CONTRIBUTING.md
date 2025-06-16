@@ -12,7 +12,6 @@ To begin contributing, follow these steps:
 * **Fork the Repository:** Click the "Fork" button in the top right corner of the repository page. This creates a personal copy of the repository in your GitHub account.
 * **Clone Your Fork:** On your local machine, clone your forked repository using the command:
     `git clone https://github.com/harrisrais/Learn-Smart.git`
-    (Remember to replace `your-username` with your actual GitHub username.)
 * **Create a New Branch:** Before making changes, create a new branch for your feature or bug fix:
     `git checkout -b feature/your-feature-name`
     (For bug fixes, you might use `bugfix/issue-description`.)
